@@ -1,3 +1,4 @@
+// user.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -5,23 +6,17 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
+
+  @Column({ unique: true })
+  email: string;
 
   @Column()
   password: string;
 
-  @Column()
-  email: string;
-
-  @Column()
-  phone: string;
-
-  @Column()
-  address: string;
-
   @Column({ nullable: true })
-  refreshToken: string;
+  refreshToken: string; // ← nullable car null après déconnexion
 }
 
 // information utilisateur pour l'authentification, avec un nom d'utilisateur et un mot de passe.
